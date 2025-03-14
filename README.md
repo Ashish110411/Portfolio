@@ -1,39 +1,44 @@
-# 🚀 Ashish's Portfolio  
+# 🚀 Ashish's Portfolio
 
-This is my personal portfolio website showcasing my projects, skills, and experiences in video editing, design, and software development. Built using **React**, the portfolio provides an interactive and visually appealing way to explore my work.
+A modern and responsive portfolio website showcasing my skills, projects, and experiences. Built with **React.js** and deployed using **Netlify**.
 
-## 🔗 Live Demo  
-ashish110411.netlify.app(#) 
+## 📌 Features
+✅ Interactive and responsive UI  
+✅ Showcases my projects with links  
+✅ Smooth animations and transitions  
+✅ Easy navigation with React Router
 
----
+## 🛠️ Tech Stack
+- **Frontend:** React.js, JavaScript, HTML, CSS
+- **Styling:** Tailwind CSS / Styled Components
+- **Icons:** React Icons
+- **Deployment:** Netlify
+- **Version Control:** Git & GitHub
 
-## 🛠 Tech Stack  
-- **Frontend:** React.js, React Router, HTML 
-- **Styling:** CSS3, SCSS, Responsive Design  
-- **Icons & UI:** React Icons  
-- **Hosting & Deployment:** Netlify  
-
----
-
-## 📂 Features  
-- 🎨 **Dynamic Project Showcase** – Categorized sections for Video Editing, Software Development, Machine Learning, and Game Development  
-- 🔗 **GitHub & Google Drive Links** – Direct access to project repositories and files  
-- 📱 **Fully Responsive** – Optimized for all screen sizes  
-- 🖥 **Smooth UI/UX** – Interactive animations and transitions  
-
----
+## 🚀 Deployment
+[Ashish Choudhary | Portfolio](https://ashish110411.netlify.app)
 
 ## 🚀 How to Run Locally  
 1. **Clone the repository**  
    ```sh
-   git clone https://github.com/your-username/your-portfolio.git
+   git clone https://github.com/Ashish110411/Portfolio.git
 2. **Navigate to the project folder**  
    ```sh
    cd your-portfolio
 3. **Install dependencies**  
    ```sh
    npm install
-4. **Start the development server  
+4. **Start the development server**  
    ```sh
    npm start
-5. **Open http://localhost:3000 in your browser**  
+5. **Open http://localhost:3000 in your browser**
+
+## 📜 License
+This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+
+## 🎯 Connect with Me
+🚀 [GitHub](https://github.com/Ashish110411)  
+💼 [LinkedIn](https://linkedin.com/in/ashish110411)  
+📷 [Instagram](https://instagram.com/ashish_110411)
+
+---
