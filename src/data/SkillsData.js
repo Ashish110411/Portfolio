@@ -5,7 +5,7 @@ import javaLogo from "../images/java.png";
 import jsLogo from "../images/javascript.png";
 import sqlLogo from "../images/sqloracle.png";
 import postgresqlLogo from "../images/postgresql.png";
-import mysqlLogo from "../images/mysql.png";
+import mysqlLogo from "../images/mysql2.png";
 import latexLogo from "../images/latex.png";
 import htmlLogo from "../images/html.png";
 import cssLogo from "../images/css.png";
@@ -14,11 +14,12 @@ import githubLogo from "../images/github.png";
 import colabLogo from "../images/colab.png";
 import dockerLogo from "../images/docker.png";
 import jetbrainsLogo from "../images/jetbrains.png";
+import jupyterLogo from "../images/Jupyter.png";
 import numpyLogo from "../images/numpy.png";
 import pandasLogo from "../images/pandas.png";
-import matplotlibLogo from "../images/java.png";
-import seabornLogo from "../images/java.png";
-import scikitLogo from "../images/java.png";
+import matplotlibLogo from "../images/matplotlib.png";
+import seabornLogo from "../images/seaborn.png";
+import scikitLogo from "../images/scikitlearn.png";
 import tensorflowLogo from "../images/tensorflow.png";
 import kerasLogo from "../images/keras.png";
 import opencvLogo from "../images/opencv.png";
@@ -55,6 +56,7 @@ export const SkillsData = [
 			{ name: <span className="name">Colab</span>, icon: <img src={colabLogo} alt="Google Colab" className="skill-img" /> },
 			{ name: <span className="name">Docker</span>, icon: <img src={dockerLogo} alt="Docker" className="skill-img" /> },
 			{ name: <span className="name">JetBrains</span>, icon: <img src={jetbrainsLogo} alt="JetBrains" className="skill-img" /> },
+			{ name: <span className="name">Jupyter</span>, icon: <img src={jupyterLogo} alt="Jupyter" className="skill-img" /> },
 		],
 	},
 	{
@@ -67,6 +69,7 @@ export const SkillsData = [
 			{ name: <span className="name">TensorFlow</span>, icon: <img src={tensorflowLogo} alt="TensorFlow" className="skill-img" /> },
 			{ name: <span className="name">Keras</span>, icon: <img src={kerasLogo} alt="Keras" className="skill-img" /> },
 			{ name: <span className="name">OpenCV</span>, icon: <img src={opencvLogo} alt="OpenCV" className="skill-img" /> },
+			{ name: <span className="name">Scikit Learn</span>, icon: <img src={scikitLogo} alt="ScikitLearn" className="skill-img" /> },
 		],
 	},
 	{
