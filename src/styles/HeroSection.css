@@ -15,47 +15,37 @@
 	align-items: center;
 	text-align: center;
 	position: relative;
-	overflow: hidden;
 }
-
-/* Dark Overlay (Fix for black overlay issue) */
 .hero-overlay {
 	position: absolute;
 	height: 100vh;
 	width: 100%;
-	background-color: rgba(0, 0, 0, 0.75); /* Only background is darkened */
-	z-index: 1;
+	background-color: black;
+	filter: opacity(0.8);
 }
 
-/* Content */
 .hero-content {
 	font-family: "Lato", sans-serif;
 	margin-bottom: 2rem;
 	width: fit-content;
-	position: relative;
-	z-index: 2; /* Ensures text is above the overlay */
+	z-index: 1;
 }
 
 .hero-intro {
-	font-size: 8rem;
+	font-size: 7.5rem;
 	margin-bottom: 0.5rem;
+	color: white;
 	display: flex;
 	flex-direction: column;
 }
 
 .hero-desc,
 .hero-desc-sub {
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	font-family: "Poppins", sans-serif;
 	font-weight: 100;
-	color: #ffffff;
-	overflow: hidden;
-	line-height: 2;
-	letter-spacing: 0.05em;
 }
 
-
-/* Contact Button */
 .hero-contact {
 	text-decoration: none;
 	color: var(--nav-blue);
@@ -69,11 +59,12 @@
 	border-radius: 4px;
 	overflow: hidden;
 	position: relative;
-	transition: transform 0.3s ease-in-out;
+	transition: 0.4s transform ease-in-out;
+	will-change: transform;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	cursor: pointer;
-	z-index: 3;
 }
 
 .hero-contact::after {
@@ -85,19 +76,29 @@
 	position: absolute;
 	left: 0;
 	top: 0;
-	transform: translateX(-100%);
-	transition: transform 0.4s ease-out;
+	transform: translate(-100%, 0);
+	transform-origin: top right;
+	transition: 0.8s transform ease-out;
+	will-change: transform;
 	z-index: -1;
 }
 
 .hero-contact:hover::after {
-	transform: translateX(0);
+	transform: translate(0, 0);
 }
 
 .hero-contact:hover {
 	color: var(--white);
-	transform: scale(1.05);
+	will-change: transform;
 }
+
+.hero-content .hero-desc {
+	color: #fff;
+	overflow: hidden;
+	line-height: 2;
+	letter-spacing: 0.05em;
+}
+
 .menu-icon,
 .to-top-icon {
 	padding: 0.7rem;
