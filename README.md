@@ -3,15 +3,15 @@
 This is my personal portfolio website showcasing my projects, skills, and experiences in video editing, design, and software development. Built using **React**, the portfolio provides an interactive and visually appealing way to explore my work.
 
 ## 🔗 Live Demo  
-[Click here to view the portfolio](#) *(Replace with your actual deployment link)*  
+ashish110411.netlify.app(#) 
 
 ---
 
 ## 🛠 Tech Stack  
-- **Frontend:** React.js, React Router  
+- **Frontend:** React.js, React Router, HTML 
 - **Styling:** CSS3, SCSS, Responsive Design  
 - **Icons & UI:** React Icons  
-- **Hosting & Deployment:** Vercel  
+- **Hosting & Deployment:** Netlify  
 
 ---
 
@@ -23,19 +23,17 @@ This is my personal portfolio website showcasing my projects, skills, and experi
 
 ---
 
-## 📁 Project Structure  
-📂 src
-├── 📁 components # Reusable components (WorkCard, Navbar, etc.)
-├── 📁 data # Project data (VEData, DSMLData, etc.)
-├── 📁 pages # Different sections of the portfolio
-├── 📄 App.js # Main entry point
-├── 📄 index.js # React DOM rendering
-└── 📄 styles.css # Global styles
-
-
----
-
 ## 🚀 How to Run Locally  
 1. **Clone the repository**  
    ```sh
    git clone https://github.com/your-username/your-portfolio.git
+2. **Navigate to the project folder**  
+   ```sh
+   cd your-portfolio
+3. **Install dependencies**  
+   ```sh
+   npm install
+4. **Start the development server  
+   ```sh
+   npm start
+5. **Open http://localhost:3000 in your browser**  
