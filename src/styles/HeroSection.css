@@ -4,8 +4,8 @@
 .hero-section {
 	background-image: url("../images/hero-bg-3.jpg");
 	background-attachment: fixed;
-	background-position: 100% center; /* Changed from 100% center to 20% center for left positioning */
-	background-size: 108%; /* Changed from cover to 120% for zoom effect */
+	background-position: center;
+	background-size: cover;
 	width: 100%;
 	color: var(--white);
 	height: 100vh;
