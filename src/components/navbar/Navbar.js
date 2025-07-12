@@ -1,155 +1,189 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "../../styles/Navbar.css";
 import { FaHome, FaLaptop } from "react-icons/fa";
 import { BiBookContent, BiServer, BiEnvelope } from "react-icons/bi";
 import { FiUser } from "react-icons/fi";
-import { Link } from "react-scroll";
-import ProfileImg from "../../images/profile_me.jpg";
-import ProfileImgSmall from "../../images/profile_me_small.PNG";
-import NavLinks from "./NavLinks";
-import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import NavLinksJs from "./NavLinks";
+import profilePicSmall from "../../images/profile_small.jpg";
+
+const navigationItems = [
+    { to: "home", icon: FaHome, label: "Home" },
+    { to: "about", icon: FiUser, label: "About" },
+    { to: "skills", icon: FaLaptop, label: "Skills" },
+    { to: "education", icon: BiServer, label: "Education" },
+    { to: "works", icon: BiBookContent, label: "Works" },
+    { to: "contact", icon: BiEnvelope, label: "Contact" },
+];
+
+// Social links object for backend replacement
+const socialLinks = {
+    instagram: "https://instagram.com/ashish_110411",
+    linkedin: "https://www.linkedin.com/in/ashish110411/",
+    github: "https://github.com/Ashish110411",
+    twitter: "",
+    email: "ashishchaudhary110411@gmail.com"
+};
 
 const navVariants = {
-	hidden: {
-		opacity: 0,
-		transition: {
-			delay: 0.5,
-			staggerChildren: 0.2,
-			staggerDirection: -1,
-		},
-	},
-	visible: {
-		opacity: 1,
-		transition: {
-			duration: 0.5,
-			staggerChildren: 0.2,
-			staggerDirection: 1,
-		},
-	},
+    hidden: { x: -280, opacity: 0 },
+    visible: {
+        x: 0, opacity: 1,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut",
+            staggerChildren: 0.1,
+            staggerDirection: 1,
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { x: -20, opacity: 0, transition: { duration: 0.3 } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
+};
+
+const profileVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+        scale: 1, opacity: 1,
+        transition: { duration: 0.6, ease: "easeOut", delay: 0.2 },
+    },
 };
 
 const Navbar = ({ nav, handleNav }) => {
-	return (
-		<AnimatePresence>
-			<motion.nav
-				initial={{ width: "0" }}
-				animate={
-					nav ? { width: "300px" } : { width: "0", transition: { delay: 1 } }
-				}
-				className={nav ? "navbar active" : "navbar"}>
-				<motion.div
-					initial='hidden'
-					whileInView={nav ? "visible" : "hidden"}
-					variants={navVariants}
-					exit='hidden'
-					className='navbar-container'>
-					<div className='top-details'>
-						<div className='img__cover'>
-							<img src={ProfileImgSmall} alt='Main' className='profile-pic-small' />
-						</div>
-						<Link
-							activeClass='active'
-							spy={true}
-							smooth={true}
-							offset={0}
-							duration={500}
-							onClick={handleNav}
-							to='home'
-							className='profile-name'>
-							Ashish Choudhary
-						</Link>
-						<NavLinks handleNav={handleNav} />
-					</div>
-					<ul className='mid-details'>
-						<Link
-							activeClass='active'
-							spy={true}
-							smooth={true}
-							offset={0}
-							duration={500}
-							to='home'
-							className='mid-links'>
-							<FaHome className='mid-icon' />
-							<li className='mid-link' onClick={handleNav}>
-								Home
-							</li>
-						</Link>
-						<Link
-							activeClass='active'
-							spy={true}
-							smooth={true}
-							offset={0}
-							duration={500}
-							to='about'
-							className='mid-links'>
-							<FiUser className='mid-icon' />
-							<li className='mid-link' onClick={handleNav}>
-								About
-							</li>
-						</Link>
-						<Link
-							activeClass='active'
-							spy={true}
-							smooth={true}
-							offset={0}
-							duration={500}
-							to='skills'
-							className='mid-links'>
-							<FaLaptop className='mid-icon' />
-							<li className='mid-link' onClick={handleNav}>
-								Skills
-							</li>
-						</Link>
-						<Link
-							activeClass='active'
-							spy={true}
-							smooth={true}
-							offset={0}
-							duration={500}
-							to='education'
-							className='mid-links'>
-							<BiServer className='mid-icon' />
-							<li className='mid-link' onClick={handleNav}>
-								Education
-							</li>
-						</Link>
-						<Link
-							activeClass='active'
-							spy={true}
-							smooth={true}
-							offset={0}
-							duration={500}
-							to='works'
-							className='mid-links'>
-							<BiBookContent className='mid-icon' />
-							<li className='mid-link' onClick={handleNav}>
-								Works
-							</li>
-						</Link>
-						<Link
-							activeClass='active'
-							spy={true}
-							smooth={true}
-							offset={0}
-							duration={500}
-							to='contact'
-							className='mid-links'>
-							<BiEnvelope className='mid-icon' />
-							<li className='mid-link' onClick={handleNav}>
-								Contact
-							</li>
-						</Link>
-					</ul>
-					<div className='copy'>
-						<small className='copyright'>
-							© Copyright ©2025 <br /> All rights reserved |
-						</small>
-					</div>
-				</motion.div>
-			</motion.nav>
-		</AnimatePresence>
-	);
+    const [activeSection, setActiveSection] = useState("home");
+
+    const handleScroll = useCallback(() => {
+        try {
+            const sections = navigationItems.map(item => item.to);
+            const scrollPosition = window.scrollY + 100;
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i]);
+                if (section && section.offsetTop <= scrollPosition) {
+                    setActiveSection(sections[i]);
+                    break;
+                }
+            }
+        } catch (error) {
+            console.warn("Scroll handler error:", error);
+        }
+    }, []);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            handleScroll();
+        }, 60);
+
+        return () => {
+            clearTimeout(timeoutId);
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [handleScroll]);
+
+    const handleNavClick = useCallback((section) => {
+        setActiveSection(section);
+        if (handleNav) handleNav();
+    }, [handleNav]);
+
+    const scrollToSection = useCallback((section) => {
+        try {
+            const element = document.getElementById(section);
+            if (element) {
+                const offset = 70;
+                const elementPosition = element.offsetTop - offset;
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
+            }
+        } catch (error) {
+            console.warn("Scroll to section error:", error);
+        }
+    }, []);
+
+    const handleLinkClick = useCallback((section) => {
+        handleNavClick(section);
+        scrollToSection(section);
+    }, [handleNavClick, scrollToSection]);
+
+    return (
+        <AnimatePresence>
+            {nav && (
+                <motion.nav
+                    variants={navVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                    className="navbar active"
+                >
+                    <motion.div
+                        variants={navVariants}
+                        className="navbar-container"
+                    >
+                        {/* Top Profile Section */}
+                        <motion.div variants={profileVariants} className="top-details">
+                            <motion.div
+                                className="img__cover"
+                                whileHover={{ scale: 1.1 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <img
+                                    src={profilePicSmall}
+                                    alt="Ashish Choudhary Profile"
+                                    className="profile-pic-small"
+                                    loading="lazy"
+                                />
+                            </motion.div>
+
+                            <button
+                                onClick={() => handleLinkClick("home")}
+                                className="profile-name"
+                                type="button"
+                            >
+                                Ashish Choudhary
+                            </button>
+
+                            {/* Pass socialLinks so NavLinks always works! */}
+                            <NavLinksJs handleNav={handleNav} socialLinks={socialLinks} />
+                        </motion.div>
+
+                        {/* Navigation Links */}
+                        <motion.ul className="mid-details">
+                            {navigationItems.map((item, index) => {
+                                const IconComponent = item.icon;
+                                return (
+                                    <motion.div
+                                        key={item.to}
+                                        variants={itemVariants}
+                                        custom={index}
+                                    >
+                                        <button
+                                            onClick={() => handleLinkClick(item.to)}
+                                            className={`mid-links ${activeSection === item.to ? 'active' : ''}`}
+                                            type="button"
+                                        >
+                                            <IconComponent className="mid-icon" />
+                                            <span className="mid-link">{item.label}</span>
+                                        </button>
+                                    </motion.div>
+                                );
+                            })}
+                        </motion.ul>
+
+                        {/* Footer */}
+                        <motion.div variants={itemVariants} className="copy">
+                            <small className="copyright">
+                                © Copyright ©{new Date().getFullYear()}<br />
+                                All rights reserved
+                            </small>
+                        </motion.div>
+                    </motion.div>
+                </motion.nav>
+            )}
+        </AnimatePresence>
+    );
 };
 
 export default Navbar;

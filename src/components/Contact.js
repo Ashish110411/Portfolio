@@ -1,151 +1,310 @@
-import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/Contact.css";
+import { 
+    FiMail,
+    FiMapPin,
+    FiSend,
+    FiUser,
+    FiMessageSquare
+} from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 
-const Contact = () => {
-	const fade = {
-		opacity: 1,
-		transition: {
-			duration: 1.5,
-		},
-	};
+// Only whatsapp (from socialLinks), both emails, and location
+const defaultSocialLinks = {
+    whatsapp: "https://wa.me/918076276624"
+};
 
-	const verticalLeft = {
-		opacity: 1,
-		y: 0,
-		transition: {
-			duration: 1.5,
-		},
-	};
+const Contact = ({
+    aboutParagraph1 = "",
+    email = "ashishchaudhary110411@gmail.com",
+    altEmail = "22052716@kiit.ac.in",
+    phone = "8076276624",
+    location = "Ghaziabad, Uttar Pradesh",
+    socialLinks = defaultSocialLinks
+}) => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		message: "",
-	});
-	const [isSubmitting, setIsSubmitting] = useState(false);
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.1
+            }
+        }
+    };
 
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setFormData((prev) => ({
-			...prev,
-			[name]: value,
-		}));
-	};
+    const itemVariants = {
+        hidden: { y: 30, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: { duration: 0.6, ease: "easeOut" }
+        }
+    };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setIsSubmitting(true);
+    // Only check for non-empty value, not template
+    const isValidValue = (val) => !!val && val !== "";
 
-		toast.success("Thanks for your message! I'll get back to you soon.", {
-			position: "top-left",
-			autoClose: 2000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-		});
-		setFormData({ name: "", email: "", message: "" });
-		setIsSubmitting(false);
-	};
+    const handleInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-	return (
-		<>
-			<div className='contact' id='contact'>
-				<div className='container'>
-					<motion.div
-						className='heading'
-						initial={{ opacity: 0 }}
-						whileInView={fade}
-						viewport={{ once: true }}>
-						<p className='heading-sub-text'>Hire Me</p>
-						<p className='heading-text'>Get in Touch</p>
-					</motion.div>
-					<div className='contact-box'>
-						<motion.div
-							className='left-box'
-							initial={{ opacity: 0, y: "-50px" }}
-							whileInView={verticalLeft}>
-							<div className='contact-heading'>
-								<p>
-									I’m interested in freelance opportunities – especially
-									ambitious or large projects. However, if you have other
-									requests or questions, don’t hesitate to use the form.
-								</p>
-							</div>
-							<div className='contact-hello'>
-								<p>Say Hello</p>
-								<Link className='hello-links' to='//wa.me/+918076276624' target='_blank'>
-									Whatsapp Me
-								</Link>
-								<a className='hello-links' href='mailto:ashishchaudhary110411@gmail.com' target='_blank' rel='noreferrer'>
-									ashishchaudhary110411@gmail.com
-								</a>
-								<a className='hello-links' href='mailto:22052716@kiit.ac.in' target='_blank' rel='noreferrer'>
-									22052716@kiit.ac.in
-								</a>
-							</div>
-						</motion.div>
-						<motion.div
-							className='right-box'
-							initial={{ opacity: 0, y: "50px" }}
-							whileInView={verticalLeft}>
-							<form onSubmit={handleSubmit}>
-								<div className='form-top'>
-									<div className='name'>
-										<label htmlFor='name'>Your Name</label>
-										<input
-											type='text'
-											name='name'
-											id='name'
-											value={formData.name}
-											onChange={handleChange}
-											placeholder='Enter your name'
-											required
-										/>
-									</div>
-									<div className='email'>
-										<label htmlFor='email'>Your Email</label>
-										<input
-											type='email'
-											name='email'
-											id='email'
-											value={formData.email}
-											onChange={handleChange}
-											placeholder='Enter your email address'
-											required
-										/>
-									</div>
-								</div>
-								<div className='form-mid'>
-									<div className='message'>
-										<label htmlFor='message'>Your message</label>
-										<textarea
-											type='text'
-											name='message'
-											id='message'
-											value={formData.message}
-											onChange={handleChange}
-											placeholder='Write your message here'
-											required></textarea>
-									</div>
-								</div>
-								<div className='form-btn'>
-									<button type='submit' disabled={isSubmitting} className='hero-contact'>
-										{isSubmitting ? "Sending..." : "Send Message"}
-									</button>
-								</div>
-							</form>
-						</motion.div>
-					</div>
-				</div>
-			</div>
-			<ToastContainer />
-		</>
-	);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        // Basic validation
+        if (!formData.name || !formData.email || !formData.message) {
+            toast.error("Please fill in all required fields");
+            setIsSubmitting(false);
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            toast.error("Please enter a valid email address");
+            setIsSubmitting(false);
+            return;
+        }
+
+        try {
+            // Simulate form submission (replace with actual API call)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            toast.success("Thank you! Your message has been sent successfully.");
+            setFormData({ name: '', email: '', subject: '', message: '' });
+        } catch (error) {
+            toast.error("Something went wrong. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // Build contact info array (always show, but disabled if value is not set)
+    const contactInfo = [
+        {
+            icon: <FiMail />,
+            title: "Email",
+            value: isValidValue(email) ? email : "Not Provided",
+            link: isValidValue(email) ? `mailto:${email}` : null,
+            disabled: !isValidValue(email),
+        },
+        {
+            icon: <FiMail />,
+            title: "Alternative Email",
+            value: isValidValue(altEmail) ? altEmail : "Not Provided",
+            link: isValidValue(altEmail) ? `mailto:${altEmail}` : null,
+            disabled: !isValidValue(altEmail),
+        },
+        {
+            icon: <FaWhatsapp />,
+            title: "WhatsApp",
+            value: isValidValue(phone) ? phone : "Not Provided",
+            link: isValidValue(socialLinks.whatsapp) ? socialLinks.whatsapp : null,
+            disabled: !isValidValue(socialLinks.whatsapp),
+        },
+        {
+            icon: <FiMapPin />,
+            title: "Location",
+            value: isValidValue(location) ? location : "Not Provided",
+            link: null,
+            disabled: !isValidValue(location),
+        }
+    ];
+
+    return (
+        <section className="contact" id="contact">
+            <div className="container">
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="contact-wrapper"
+                >
+                    {/* Section Header */}
+                    <motion.div variants={itemVariants} className="heading">
+                        <span className="heading-sub-text">Let's Connect</span>
+                        <h2 className="heading-text">Get in Touch</h2>
+                        <div className="heading-divider"></div>
+                    </motion.div>
+
+                    {/* Contact Content */}
+                    <div className="contact-content">
+                        {/* Left Side - Contact Info */}
+                        <motion.div variants={itemVariants} className="contact-info">
+                            <div className="info-header">
+                                <h3>Let's Work Together</h3>
+                                <p>
+                                    {aboutParagraph1 ||
+                                        "I'm available for consulting and services. Whether you need assistance with your projects or have any questions, I'm here to help."
+                                    }
+                                </p>
+                            </div>
+
+                            <div className="contact-details">
+                                {contactInfo.map((item, index) =>
+                                    item.link && !item.disabled ? (
+                                        <motion.a
+                                            key={index}
+                                            href={item.link}
+                                            target={item.link && item.link.startsWith('http') ? "_blank" : "_self"}
+                                            rel={item.link && item.link.startsWith('http') ? "noopener noreferrer" : ""}
+                                            className="contact-item"
+                                            whileHover={{ x: 10, scale: 1.02 }}
+                                            transition={{ duration: 0.3 }}
+                                        >
+                                            <div className="contact-icon">
+                                                {item.icon}
+                                            </div>
+                                            <div className="contact-text">
+                                                <span className="contact-title">{item.title}</span>
+                                                <span className="contact-value">{item.value}</span>
+                                            </div>
+                                        </motion.a>
+                                    ) : (
+                                        <motion.div
+                                            key={index}
+                                            className="contact-item contact-item--disabled"
+                                            style={{ pointerEvents: "none", opacity: 0.5 }}
+                                        >
+                                            <div className="contact-icon">{item.icon}</div>
+                                            <div className="contact-text">
+                                                <span className="contact-title">{item.title}</span>
+                                                <span className="contact-value">{item.value}</span>
+                                            </div>
+                                        </motion.div>
+                                    )
+                                )}
+                            </div>
+                        </motion.div>
+
+                        {/* Right Side - Contact Form */}
+                        <motion.div variants={itemVariants} className="contact-form-container">
+                            <div className="form-header">
+                                <h3>Send Me a Message</h3>
+                                <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+                            </div>
+
+                            <form className="contact-form" onSubmit={handleSubmit}>
+                                <div className="form-row">
+                                    <div className="form-group">
+                                        <label htmlFor="name">
+                                            <FiUser className="label-icon" />
+                                            Full Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            placeholder="Enter your full name"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="email">
+                                            <FiMail className="label-icon" />
+                                            Email Address *
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            placeholder="Enter your email"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="subject">
+                                        <FiMessageSquare className="label-icon" />
+                                        Subject
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="subject"
+                                        name="subject"
+                                        value={formData.subject}
+                                        onChange={handleInputChange}
+                                        placeholder="What's this about?"
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="message">
+                                        <FiMessageSquare className="label-icon" />
+                                        Message *
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        placeholder="Tell me about your project or requirements..."
+                                        rows="6"
+                                        required
+                                    ></textarea>
+                                </div>
+
+                                <motion.button
+                                    type="submit"
+                                    className="submit-btn"
+                                    disabled={isSubmitting}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    {isSubmitting ? (
+                                        <span className="loading">
+                                            <div className="spinner"></div>
+                                            Sending...
+                                        </span>
+                                    ) : (
+                                        <span className="send">
+                                            <FiSend className="btn-icon" />
+                                            Send Message
+                                        </span>
+                                    )}
+                                </motion.button>
+                            </form>
+                        </motion.div>
+                    </div>
+                </motion.div>
+            </div>
+
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
+        </section>
+    );
 };
 
 export default Contact;

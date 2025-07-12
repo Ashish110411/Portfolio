@@ -1,56 +1,175 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/About.css";
 import { motion } from "framer-motion";
-import ProfileImg from "../images/profile_me.jpg";
+import profilePic from "../images/profile_me.jpg";
 
-const About = () => {
-    const fadeInLeft = {
-        hidden: { x: "-100%", opacity: 0 },
-        visible: { x: 0, opacity: 1, transition: { type: "spring", duration: 2, bounce: 0.3 } },
-    };
+const About = ({
+	name = "Ashish Choudhary",
+	about = "Director-Creative, Enactus KIIT University",
+	aboutParagraph1 = "I’m a final-year B.Tech Computer Science student with a solid foundation in programming, algorithms, and system design. I’ve built projects in web development, machine learning, and game development, combining practical skills with problem-solving. I’m especially interested in full-stack development and scalable tech solutions, and I’m eager to keep learning and contribute to impactful projects.",
+	aboutParagraph2 = "I'm deeply passionate about Data Science and Machine Learning, with hands-on experience in data analysis, model building, and predictive analytics. I enjoy uncovering insights from data and applying ML algorithms to solve real-world problems. From cleaning datasets to fine-tuning models, I find every step of the ML pipeline engaging and impactful. I'm constantly exploring new tools and techniques to expand my knowledge and stay updated in this fast-evolving field.",
+	aboutParagraph3 = "I'm a passionate game developer who enjoys creating interactive and immersive experiences using code. I’ve explored game development through projects involving 2D and 3D games, focusing on gameplay mechanics, design, and performance optimization. Whether working with engines like Unity or experimenting with custom game logic, I love bringing ideas to life and constantly improving my skills in both design and programming.",
+	aboutParagraph4 = "As the Creative Director of my university's social-entrepreneurship society, ENACTUS, I’ve led multiple design and branding initiatives, gaining hands-on experience in video editing, graphic design (GD), and creative storytelling. I’ve managed teams for event promotions, content creation, and multimedia campaigns, ensuring consistent quality and innovation across all platforms. This role has helped me sharpen my leadership, communication, and time-management skills while collaborating with diverse teams to bring creative ideas to life and successfully execute high-impact student events.",
+	professionalStats = [ {
+  "number" : "8+",
+  "label" : "CGPA"
+}, {
+  "number" : "20",
+  "label" : "Projects Completed"
+} ]
+}) => {
+	const [imageLoaded, setImageLoaded] = useState(false);
 
-    const fadeInRight = {
-        hidden: { x: "50%", opacity: 0 },
-        visible: { x: 0, opacity: 1, transition: { type: "spring", duration: 2, bounce: 0.3 } },
-    };
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.3,
+				delayChildren: 0.2
+			}
+		}
+	};
 
-    return (
-        <div className="about" id="about">
-            <div className="container">
-                {/* Heading Section */}
-                <motion.div initial="hidden" whileInView="visible" variants={fadeInLeft} viewport={{ once: true }} className="heading">
-                    <p className="heading-sub-text">Who I am</p>
-                    <p className="heading-text">About Me</p>
-                </motion.div>
+	const fadeInUp = {
+		hidden: {
+			y: 60,
+			opacity: 0
+		},
+		visible: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				duration: 0.8,
+				ease: "easeOut"
+			}
+		}
+	};
 
-                <div className="split-about">
-                    {/* Text Content */}
-                    <motion.div initial="hidden" whileInView="visible" variants={fadeInLeft} className="about-content">
-                        <p>
-                            I am Ashish Choudhary, a pre-final year B.Tech student in Computer Science and Engineering. As a passionate game developer and data science enthusiast, I thrive at the intersection of creativity and technology. Proficient in Java, Python, and database management, I tackle complex software development challenges.
-                        </p>
-                        <br />
-                        <p>
-                            Beyond coding, I am an experienced video editor, graphic designer, and 3D modeler. These skills enable me to blend aesthetics with functionality, creating engaging and visually appealing projects. My game development work reflects this fusion, striving for immersive and interactive experiences.
-                        </p>
-                        <br />
-                        <p>
-                            Throughout my academic and professional journey, I have consistently demonstrated a problem-solving mindset, strong work ethic, and the ability to collaborate effectively in teams. As the Creative Director of Enactus-KIIT, I have honed my leadership skills, guiding teams to achieve shared goals.
-                        </p>
-                        <br />
-                        <p>
-                            As I progress, I aim to deepen my expertise in game development and data science, striving to make a meaningful impact in these fields. I look forward to connecting with like-minded professionals and exploring opportunities to apply my skills and passion to innovative projects.
-                        </p>
-                    </motion.div>
+	const fadeInLeft = {
+		hidden: {
+			x: -80,
+			opacity: 0
+		},
+		visible: {
+			x: 0,
+			opacity: 1,
+			transition: {
+				duration: 0.8,
+				ease: "easeOut"
+			}
+		}
+	};
 
-                    {/* Profile Image */}
-                    <motion.div initial="hidden" whileInView="visible" variants={fadeInRight} className="about-img">
-                        <img src={ProfileImg} alt="Profile" />
-                    </motion.div>
-                </div>
-            </div>
-        </div>
-    );
+	const fadeInRight = {
+		hidden: {
+			x: 80,
+			opacity: 0
+		},
+		visible: {
+			x: 0,
+			opacity: 1,
+			transition: {
+				duration: 0.8,
+				ease: "easeOut"
+			}
+		}
+	};
+
+	const imageVariants = {
+		hidden: {
+			scale: 0.8,
+			opacity: 0
+		},
+		visible: {
+			scale: 1,
+			opacity: 1,
+			transition: {
+				duration: 1,
+				ease: "easeOut"
+			}
+		}
+	};
+
+	const stats = professionalStats;
+
+	return (
+		<section className="about" id="about">
+			<div className="container">
+				<motion.div
+					variants={containerVariants}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.3 }}
+					className="about-wrapper"
+				>
+					{/* Section Header */}
+					<motion.div variants={fadeInUp} className="heading">
+						<span className="heading-sub-text">Get to know me</span>
+						<h2 className="heading-text">About Me</h2>
+						<div className="heading-divider"></div>
+					</motion.div>
+
+					{/* Main Content */}
+					<div className="split-about">
+						<motion.div
+							variants={fadeInLeft}
+							className="about-content"
+						>
+							<div className="content-text">
+								<p className="intro-text">
+									Hello! I'm <span className="highlight">{name}</span>
+								</p>
+								{aboutParagraph1 && <p>{aboutParagraph1}</p>}
+								{aboutParagraph2 && <p>{aboutParagraph2}</p>}
+								{aboutParagraph3 && <p>{aboutParagraph3}</p>}
+								{aboutParagraph4 && <p>{aboutParagraph4}</p>}
+							</div>
+						</motion.div>
+
+						<motion.div
+							variants={fadeInRight}
+							className="about-visual"
+						>
+							{/* Profile Image */}
+							<div className="image-container">
+								<motion.div
+									variants={imageVariants}
+									className="about-img"
+								>
+									<img
+										src={profilePic}
+										alt={`${name} - ${about}`}
+										onLoad={() => setImageLoaded(true)}
+										className={imageLoaded ? 'loaded' : ''}
+									/>
+									<div className="image-overlay"></div>
+								</motion.div>
+							</div>
+
+							{/* Stats Section */}
+							<div className="stats-container">
+								{stats.map((stat, index) => (
+									<motion.div
+										key={stat.label}
+										className="stat-item"
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										transition={{ delay: index * 0.1, duration: 0.6 }}
+										viewport={{ once: true }}
+										whileHover={{ scale: 1.05 }}
+									>
+										<div className="stat-number">{stat.number}</div>
+										<div className="stat-label">{stat.label}</div>
+									</motion.div>
+								))}
+							</div>
+						</motion.div>
+					</div>
+				</motion.div>
+			</div>
+		</section>
+	);
 };
 
 export default About;
