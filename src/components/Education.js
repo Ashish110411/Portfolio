@@ -5,65 +5,91 @@ import { FiBookOpen, FiAward, FiCalendar, FiMapPin, FiStar, FiBriefcase } from "
 
 // Template placeholders for dynamic data
 const educationData = {
-	education: [ {
-  "degree" : "Bachelors of Technology, CSE",
-  "institution" : "KIIT University",
-  "year" : "2026"
-}, {
-  "degree" : "CBSE 12 PCM with Computer Science",
-  "institution" : "Sun Valley International School",
-  "year" : "2022"
-}, {
-  "degree" : "CBSE 10",
-  "institution" : "Sun Valley International School",
-  "year" : "2020"
-} ],
-	workExperience: [ ],
-	certifications: [ {
-  "title" : "Build Profitable E-Commerce Stores with WordPress & Woostify",
-  "institution" : "Udemy",
-  "year" : "May 2025"
-}, {
-  "title" : "GfG 160 - 160 Days of DSA (With Summer Workshops)",
-  "institution" : "Geeks For Geeks",
-  "year" : "May 2025"
-}, {
-  "title" : "Deloitte Australia Data Analytics Job Simulation",
-  "institution" : "Forage",
-  "year" : "May 25"
-}, {
-  "title" : "Data Structures Algorithm DSA in Python + JavaScript LEETCODE",
-  "institution" : "Udemy",
-  "year" : "Apr 2025"
-}, {
-  "title" : "British Airways Data Science Job Simulation",
-  "institution" : "Forage",
-  "year" : "Apr 2025"
-}, {
-  "title" : "Build a Face Recognition Application using Python",
-  "institution" : "Guvi",
-  "year" : "May 2021"
-}, {
-  "title" : "Part of the team that won Enactus India National Exposition 24’ Early Stage",
-  "institution" : "Enactus India",
-  "year" : "Jul 2024"
-}, {
-  "title" : "Produced a winning video for the most-viewed in Enactus India National Exposition 23’",
-  "institution" : "Enactus India",
-  "year" : "Jul 2023"
-}, {
-  "title" : "JavaScript Fundamentals to Advanced: Full Stack Development",
-  "institution" : "Udemy",
-  "year" : "Jun 2025"
-}, {
-  "title" : "Python Software, Application, Games, Automation Development",
-  "institution" : "Udemy",
-  "year" : "Jun 2025"
-}, {
-  "title" : "GFG - Complete Data Science and Machine Learning",
-  "institution" : "Geeks for Geeks",
-  "year" : "Ongoing"
-} ]
+	education: [
+		{
+			"degree": "Bachelors of Technology, CSE",
+			"institution": "KIIT University",
+			"year": "2026"
+		},
+		{
+			"degree": "CBSE 12 PCM with Computer Science",
+			"institution": "Sun Valley International School",
+			"year": "2022"
+		},
+		{
+			"degree": "CBSE 10",
+			"institution": "Sun Valley International School",
+			"year": "2020"
+		}
+	],
+	workExperience: [],
+	certifications: [
+		{
+			"title": "GFG - Complete Data Science and Machine Learning",
+			"institution": "Geeks for Geeks",
+			"year": "Ongoing"
+		},
+		{
+			"title": "Build a Face Recognition Application using Python",
+			"institution": "Guvi",
+			"year": "May 2021"
+		},
+		{
+			"title": "Produced a winning video for the most-viewed in Enactus India National Exposition 23’",
+			"institution": "Enactus India",
+			"year": "Jul 2023"
+		},
+		{
+			"title": "Part of the team that won Enactus India National Exposition 24’ Early Stage",
+			"institution": "Enactus India",
+			"year": "Jul 2024"
+		},
+		{
+			"title": "Data Structures Algorithm DSA in Python + JavaScript LEETCODE",
+			"institution": "Udemy",
+			"year": "Apr 2025"
+		},
+		{
+			"title": "British Airways Data Science Job Simulation",
+			"institution": "Forage",
+			"year": "Apr 2025"
+		},
+		{
+			"title": "Health Systems Development: Health systems, Policy and Research",
+			"institution": "Coursera",
+			"year": "Apr 2025"
+		},
+		{
+			"title": "Health Systems Development: Introduction to Health Systems",
+			"institution": "Coursera",
+			"year": "Apr 2025"
+		},
+		{
+			"title": "Build Profitable E-Commerce Stores with WordPress & Woostify",
+			"institution": "Udemy",
+			"year": "May 2025"
+		},
+		{
+			"title": "GfG 160 - 160 Days of DSA (With Summer Workshops)",
+			"institution": "Geeks For Geeks",
+			"year": "May 2025"
+		},
+		{
+			"title": "Deloitte Australia Data Analytics Job Simulation",
+			"institution": "Forage",
+			"year": "May 25"
+		},
+		{
+			"title": "JavaScript Fundamentals to Advanced: Full Stack Development",
+			"institution": "Udemy",
+			"year": "Jun 2025"
+		},
+		{
+			"title": "Python Software, Application, Games, Automation Development",
+			"institution": "Udemy",
+			"year": "Jun 2025"
+		}
+	]
 };
 
 const Education = () => {

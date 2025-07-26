@@ -10,7 +10,7 @@ import CV from "../data/resume.pdf";
 const HeroSection = ({ nav, handleNav }) => {
 	const [visible, setVisible] = useState(false);
 	const [text, setText] = useState("");
-	const words = [ "Full-Stack Developer", "ML Enthusiast", "Game Developer", "Data Scientist" ]; // e.g. ["Accountant", "Govt Servant", "Finance Advisor"]
+	const words = [ "Full-Stack Developer", "ML Enthusiast", "Game Developer", "Data Science Enthusiast", "Video Editor" ];
 	const [wordIndex, setWordIndex] = useState(0);
 	const [charIndex, setCharIndex] = useState(0);
 	const [isDeleting, setIsDeleting] = useState(false);

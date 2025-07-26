@@ -53,6 +53,9 @@ const SkillsData = [ {
   }, {
     "name" : "HTML",
     "icon" : "html.png"
+  }, {
+    "name" : "CSS",
+    "icon" : "css.png"
   } ]
 }, {
   "category" : "Programming Languages",

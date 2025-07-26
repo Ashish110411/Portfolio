@@ -14,7 +14,7 @@ const About = ({
   "number" : "8+",
   "label" : "CGPA"
 }, {
-  "number" : "20",
+  "number" : "15+",
   "label" : "Projects Completed"
 } ]
 }) => {
