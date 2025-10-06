@@ -1,17 +1,27 @@
-export const tabData = [ {
-  "id" : "fullstack",
-  "label" : "Full-Stack",
-  "data" : [ {
-    "title" : "PortGen",
-    "description" : "• Developed a full-stack portfolio site generator using Spring Boot and React.js, enabling developers to generate personalized, responsive portfolios from structured form input.\n• Designed a modular React frontend supporting domain-wise skills, categorized project sections, dynamic routing, and smooth animations via Framer Motion.\n• Built a robust backend to process user data, manage media uploads (profile images, resumes), and generate production-ready codebases on the fly.\n• Focused on scalability, maintainability, and clean UI/UX, allowing seamless customization and reuse for different user profiles.",
-    "link" : "https://github.com/Ashish110411/PortGen",
-    "tech" : [ "Spring Boot", "React.js", "REST APIs", "Framer Motion", "File Upload Handling", "HTML", "CSS" ]
-  }, {
-    "title" : "Alumni Management System",
-    "description" : "• Designed and implemented a full-stack Alumni Management System using Spring Boot (Java) and React.js, enabling seamless creation, retrieval, updating, and deletion (CRUD) of alumni records with image upload support.\n• Built RESTful APIs with Spring Boot to manage alumni data using JPA & Hibernate, integrated PostgreSQL for persistence, and ensured scalable architecture via service-repository layering and proper exception handling.\n• Developed a responsive React.js frontend with dynamic forms, real-time validation, image previews, and conditional rendering for editing or deleting records—enhanced with React Router for page routing.\n• Implemented secure and efficient image handling by encoding image files as Base64 in the backend and rendering them on the frontend with preview and removal options.",
-    "link" : "https://github.com/Ashish110411/AlumiNet",
-    "tech" : [ "Spring Boot", "React.js", "PostgreSQL", "JPA/Hibernate", "REST APIs", "Base64 Image Handling", "HTML", "CSS" ]
-  } ]
+export const tabData = [
+    {
+        "id": "fullstack",
+        "label": "Full-Stack",
+        "data": [
+            {
+                "title": "ResuGen",
+                "description": "• Developed a web-based LaTeX resume builder that generates fully formatted, ATS-friendly resumes in real time.\n• Integrated a dynamic React.js interface with live PDF preview using a custom LaTeX rendering API.\n• Added features like section visibility toggle, section reordering, and auto-saving drafts for a smooth user experience.\n• Implemented modular form sections for Education, Projects, and Skills, automatically formatted into LaTeX syntax.\n• Focused on UI responsiveness and optimized rendering for different screen sizes.\n• Deployed on Netlify for fast, serverless access with zero-login use and no watermark branding.\n• Designed with scalability in mind, allowing easy future integration of templates and user authentication.",
+                "link": "https://resugen-rg.netlify.app/",
+                "tech": ["React.js", "HTML", "LaTeX API", "CSS", "Netlify"]
+            },
+            {
+                "title": "PortGen",
+                "description": "• Developed a full-stack portfolio site generator using Spring Boot and React.js, enabling developers to generate personalized, responsive portfolios from structured form input.\n• Designed a modular React frontend supporting domain-wise skills, categorized project sections, dynamic routing, and smooth animations via Framer Motion.\n• Built a robust backend to process user data, manage media uploads (profile images, resumes), and generate production-ready codebases on the fly.\n• Focused on scalability, maintainability, and clean UI/UX, allowing seamless customization and reuse for different user profiles.",
+                "link": "https://portgen-rg.netlify.app/",
+                "tech": ["Spring Boot", "React.js", "REST APIs", "Framer Motion", "File Upload Handling", "HTML", "CSS"]
+            },
+            {
+                "title": "Alumni Management System",
+                "description": "• Designed and implemented a full-stack Alumni Management System using Spring Boot (Java) and React.js, enabling seamless creation, retrieval, updating, and deletion (CRUD) of alumni records with image upload support.\n• Built RESTful APIs with Spring Boot to manage alumni data using JPA & Hibernate, integrated PostgreSQL for persistence, and ensured scalable architecture via service-repository layering and proper exception handling.\n• Developed a responsive React.js frontend with dynamic forms, real-time validation, image previews, and conditional rendering for editing or deleting records—enhanced with React Router for page routing.\n• Implemented secure and efficient image handling by encoding image files as Base64 in the backend and rendering them on the frontend with preview and removal options.",
+                "link": "https://svisalumni.netlify.app/",
+                "tech": ["Spring Boot", "React.js", "PostgreSQL", "JPA/Hibernate", "REST APIs", "Base64 Image Handling", "HTML", "CSS"]
+            }
+        ]
 }, {
   "id" : "mldatascience",
   "label" : "ML & Data Science",
