@@ -5,24 +5,28 @@ import { FiBookOpen, FiAward, FiCalendar, FiMapPin, FiStar, FiBriefcase } from "
 
 // Template placeholders for dynamic data
 const educationData = {
-	education: [
-		{
-			"degree": "Bachelors of Technology, CSE",
-			"institution": "KIIT University",
-			"year": "2026"
-		},
-		{
-			"degree": "CBSE 12 PCM with Computer Science",
-			"institution": "Sun Valley International School",
-			"year": "2022"
-		},
-		{
-			"degree": "CBSE 10",
-			"institution": "Sun Valley International School",
-			"year": "2020"
-		}
-	],
-	workExperience: [],
+	education: [ {
+  "degree" : "Bachelors of Technology, CSE",
+  "institution" : "KIIT University",
+  "year" : "2026"
+}, {
+  "degree" : "CBSE 12 PCM with Computer Science",
+  "institution" : "Sun Valley International School",
+  "year" : "2022"
+}, {
+  "degree" : "CBSE 10",
+  "institution" : "Sun Valley International School",
+  "year" : "2020"
+} ],
+	workExperience: [ {
+  "duration" : "2 months",
+  "year" : "Dec 2025 - Present",
+  "description" : "• Selected for the Winter Internship Program from a national applicant pool, with 650 students chosen for the cohort.\n• Currently undergoing a 90-day intensive training program focused on Java Full-Stack Development.\n• Training includes hands-on learning in Angular for frontend and Spring Boot for backend development.\n• Gaining foundational exposure to REST API development, database connectivity, and application integration workflows as part of the training curriculum.\n• Developing practical understanding of full-stack development lifecycle within a guided training environment.",
+  "company" : "Infosys",
+  "location" : "Mysore, Karnataka",
+  "position" : "Winter Intern"
+} ],
+
 	certifications: [
 		{
 			"title": "GFG - Complete Data Science and Machine Learning",
